@@ -1,0 +1,189 @@
+<html>
+
+     <head>
+         
+         <style type="text/css">
+            
+                #top-bar  {
+
+                    position: absolute;
+                    margin-left: -10px;
+                    width: 100%;
+                    background-color:slategray;
+                    height: 80px;
+                    padding: 0px;
+
+                }
+                
+                h1  {
+
+                    font-weight: bold;
+                    font-family: Arial, Helvetica, sans-serif;
+                    color:whitesmoke;
+                    text-align: center;
+                    
+                    
+                }
+
+                #clockImage  {
+
+                    height: 50px;
+                    width: 50px; 
+                    margin-left: 380px;
+                    margin-top: -70px;
+                    float: right;
+                    padding: 9px;
+                    
+
+                }
+
+                #time1  {
+
+                    
+                    font-weight: bold;
+                    font-size:larger;
+                    text-align: center;
+
+                }
+
+                #instructions  {
+
+                    
+                    
+                    margin: 50px;
+                    margin-left: -3px;
+                    text-align: center;
+
+                }
+
+                #shape  {
+
+                    background-color: red;
+                    height: 100px;
+                    width: 100px;
+                    display: none;
+                    text-align: center;
+                    position: relative;
+                    
+         </style>
+
+         <body> 
+
+            <div id="top-bar">
+
+                <h1>
+                    Test your reaction time
+    
+                </h1>
+
+                <link rel ="stylesheet" type="text/css" href ="style.css">
+
+                <img id="clockImage" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcRqdT5WLzK2ETg5KFlIwK6fMnIWlNclKgLKnQ&usqp=CAU">
+
+
+            </div>
+
+            <br>
+            <br>
+
+            <p id="instructions">Click on the circles and boxes as quickly as
+                you can!
+            </p>
+            <p id="time1">Your time: <span id="timeTaken">
+                </span></p>
+            <div id="shape"></div>
+
+            <script>
+                
+            var start = new Date().getTime();
+
+function getRandomColor() {
+    var letters = '0123456789ABCDEF';
+    var color = '#';
+    for (var i = 0; i < 6; i++) {
+     color += letters[Math.floor(Math.random() * 16)];
+     }
+     return color;
+    }
+
+
+ function makeShapeAppear()  {
+
+    var top = Math.random() * 400;
+
+    var left = Math.random() * 600;
+
+    var width = (Math.random() * 200) + 100;
+
+    if (Math.random() > 0.5)  {
+
+        document.getElementById("shape").style.borderRadius = 
+        "50%"; 
+    
+
+     } else {
+
+        document.getElementById("shape").style.borderRadius = 
+        "0";
+
+     }
+
+    document.getElementById("shape").style.backgroundColor = 
+     getRandomColor();
+
+     
+    document.getElementById("shape").style.width = 
+     width + "px";
+
+    document.getElementById("shape").style.height = 
+     width + "px";
+     
+
+    document.getElementById("shape").style.top =
+     + top + "px";
+
+     document.getElementById("shape").style.left =
+     left + "px";
+
+     document.getElementById("shape").style.display
+        = "block";
+
+    start = new Date().getTime();
+
+
+
+
+    }
+
+    function appearAfterDelay()  {
+
+    setTimeout(makeShapeAppear, Math.random() * 2000);
+
+    }
+
+    appearAfterDelay();
+
+    document.getElementById("shape").onclick = 
+    function()  {
+       
+        document.getElementById("shape").style.display
+        = "none";
+
+        var end = new Date().getTime();
+
+        var timeTaken = (end - start) / 1000;
+
+        document.getElementById("timeTaken").innerHTML = 
+        timeTaken + "s";
+
+        appearAfterDelay();
+
+    }
+            </script>
+
+        </body>
+
+    </head>
+
+
+</html>
